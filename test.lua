@@ -128,32 +128,8 @@ spawn(function()
             pcall(function()
                 for i,v in pairs(game:GetService("Workspace").Tycoons[game.Players.LocalPlayer.Name].Buttons:GetChildren()) do
                     if v:IsA("Model") and v.Parent == "Buttons" then
-                        v.CanCollide = false
-                        v.Transparency = 1
-                        wait(0.1)
-                        Distance = (v.Button.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-                        if Distance <= 200 then
-                            Speed = 30
-                        elseif Distance >= 400 then
-                            Speed = 50
-                        end
-                        game:GetService("TweenService"):Create(
-                            v.Button,
-                            TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear),
-                            {CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame}
-                        ):Play()
-                        wait(0.1)
-                        game:GetService("TweenService"):Create(
-                            v.Button,
-                            TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear),
-                            {CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,0,5)}
-                        ):Play()
-                        wait(0.1)
-                        game:GetService("TweenService"):Create(
-                            v,
-                            TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear),
-                            {CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,0,-5)}
-                        ):Play()
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Button.CFrame
+                        wait(0.5)
                     end
                 end
             end)
